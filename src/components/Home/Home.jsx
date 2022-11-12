@@ -1,6 +1,7 @@
 import React from "react";
 import Appoinment from "./Appoinment";
 import Category from "./Category";
+import ContactUs from "./ContactUs";
 import Hero from "./Hero";
 import Service from "./Service";
 import Terms from "./Terms";
@@ -15,6 +16,7 @@ const Home = () => {
       <Terms />
       <Appoinment />
       <Testimonial />
+      <ContactUs />
     </div>
   );
 };

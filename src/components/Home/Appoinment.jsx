@@ -7,7 +7,7 @@ const Appoinment = () => {
   return (
     <div>
       <div className="hero mt-40">
-        <img src={bg} className="h-[55vh] w-full" alt="" />
+        <img src={bg} className="h-[75vh] w-full" alt="" />
         <div className="hero-content flex-col lg:flex-row">
           <img
             src={doct}

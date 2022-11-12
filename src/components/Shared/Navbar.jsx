@@ -11,7 +11,13 @@ const Navbar = () => {
         <Link className="">Appoinment</Link>
       </li>
       <li>
+        <Link className="">Review</Link>
+      </li>
+      <li>
         <Link>About</Link>
+      </li>
+      <li>
+        <Link className="">Contuct Us</Link>
       </li>
       <li>
         <Link>Log in</Link>
