@@ -5,19 +5,29 @@ const Navbar = () => {
   const navIndex = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/" className="appoinment">
+          Home
+        </Link>
       </li>
       <li>
-        <Link className="">Appoinment</Link>
+        <Link to="/appoinment" className="">
+          Appoinment
+        </Link>
       </li>
       <li>
-        <Link className="">Review</Link>
+        <Link to="/reviews" className="">
+          Review
+        </Link>
       </li>
       <li>
-        <Link>About</Link>
+        <Link to="/about" className="/about">
+          About
+        </Link>
       </li>
       <li>
-        <Link className="">Contuct Us</Link>
+        <Link to="/contuct-us" className="">
+          Contuct Us
+        </Link>
       </li>
       <li>
         <Link>Log in</Link>

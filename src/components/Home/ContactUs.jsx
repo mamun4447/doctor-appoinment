@@ -10,7 +10,7 @@ const ContactUs = () => {
       }}
       className="py-16"
     >
-      <div className="text-center my-16">
+      <div className="text-center my-16 mx-4">
         <h4 className="text-lg text-primary font-bold mx-2">Contact Us</h4>
         <h2 className="text-4xl text-white">Stay Connected with Us</h2>
         <form className="flex flex-col justify-center items-center my-5">

@@ -1,3 +1,4 @@
+import AppointBooking from "../components/AppoinmentPage/AppointBooking";
 import Home from "../components/Home/Home";
 import Main from "../Layout/Main";
 
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "appoinment",
+        element: <AppointBooking />,
       },
     ],
   },

@@ -7,7 +7,7 @@ const Terms = () => {
     <div>
       <div className="hero mt-36">
         <div className="hero-content flex-col lg:flex-row justify-center items-center">
-          <img src={care} className="max-w-sm rounded-lg shadow-2xl " alt="" />
+          <img src={care} className="lg:w-96 rounded-lg shadow-2xl " alt="" />
           <div className="lg:w-1/2 lg:ml-24">
             <h1 className="text-5xl font-bold ">
               Exceptional Dental Care, on Your Terms
