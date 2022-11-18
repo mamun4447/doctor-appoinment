@@ -1,18 +1,56 @@
-import React from "react";
+import React, { useContext } from "react";
 import { format } from "date-fns";
+import { AuthContext } from "../Context/AuthPrvider";
+import toast from "react-hot-toast";
 
-const ModalAppoint = ({ treatment, selectDate }) => {
+const ModalAppoint = ({ treatment, selectDate, setTreatment, refetch }) => {
+  const { user } = useContext(AuthContext);
   const { name, slots } = treatment;
   const date = format(selectDate, "PP");
 
-  const handleSubmit = (event) => {
+  const handleBooking = (event) => {
     event.preventDefault();
-
     const form = event.target;
     const slot = form.slot.value;
-    const name = form.name.value;
+    const userName = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
+    // [3, 4, 5].map((value, i) => console.log(value))
+    const booking = {
+      appointmentDate: date,
+      treatment: name,
+      patient: userName,
+      slot,
+      email,
+      phone,
+    };
+
+    // TODO: send data to the server
+    // and once data is saved then close the modal
+    // and display success toast
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.success) {
+          setTreatment(null);
+          // console.log(data.success);
+          toast.success(data.message);
+          refetch();
+        } else {
+          toast.error(data.message);
+        }
+      });
+
+    // console.log(booking);
+    setTreatment(null);
   };
 
   return (
@@ -27,49 +65,51 @@ const ModalAppoint = ({ treatment, selectDate }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">{name}</h3>
-
-          {/* ====Form==== */}
           <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 gap-5 mt-10"
+            onSubmit={handleBooking}
+            className="grid grid-cols-1 gap-3 mt-10"
           >
             <input
               type="text"
-              value={date}
               disabled
-              className="input input-bordered w-full"
+              value={date}
+              className="input w-full input-bordered "
             />
             <select name="slot" className="select select-bordered w-full">
-              {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+              {slots.map((slot, i) => (
+                <option value={slot} key={i}>
+                  {slot}
+                </option>
               ))}
             </select>
             <input
               name="name"
-              placeholder="Your name"
               type="text"
-              className="input input-bordered w-full"
+              defaultValue={user?.displayName}
+              disabled
+              placeholder="Your Name"
+              className="input w-full input-bordered"
             />
             <input
               name="email"
-              type="text"
-              placeholder="Your email"
-              className="input input-bordered w-full"
+              type="email"
+              defaultValue={user?.email}
+              disabled
+              placeholder="Email Address"
+              className="input w-full input-bordered"
             />
             <input
               name="phone"
-              placeholder="Your Contact"
               type="text"
-              className="input input-bordered w-full"
+              placeholder="Phone Number"
+              className="input w-full input-bordered"
             />
-            {/* ======Button======= */}
-            <label
-              htmlFor="booking-modal"
+            <br />
+            <input
+              className="btn btn-accent w-full"
               type="submit"
-              className="btn btn-accent input-bordered w-full"
-            >
-              Submit
-            </label>
+              value="Submit"
+            />
           </form>
         </div>
       </div>
