@@ -1,9 +1,11 @@
 import AppointBooking from "../components/AppoinmentPage/AppointBooking";
 import Login from "../components/Authentication/Login";
 import SignUp from "../components/Authentication/SignUp";
+import AllUsers from "../components/Dashboard/AllUsers";
 import Dashboard from "../components/Dashboard/Dashboard";
 import MyAppointment from "../components/Dashboard/MyAppointment";
 import Home from "../components/Home/Home";
+import PrivateAdmin from "../components/PrivateAdmin";
 import PrivateRoute from "../components/PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
@@ -39,7 +41,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <MyAppointment />,
+        element: (
+          <PrivateRoute>
+            <MyAppointment />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allusers",
+        element: (
+          <PrivateAdmin>
+            <AllUsers />
+          </PrivateAdmin>
+        ),
       },
     ],
   },

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthPrvider";
 
 const MyAppointment = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setLoading } = useContext(AuthContext);
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
@@ -18,10 +18,11 @@ const MyAppointment = () => {
         },
       });
       const data = await res.json();
+      setLoading(false);
       return data;
     },
   });
-  console.log(bookings);
+  // console.log(bookings);
   return (
     <div>
       <h1 className="text-4xl mb-8">My Appointment</h1>
@@ -50,6 +51,6 @@ const MyAppointment = () => {
       </div>
     </div>
   );
-};
+};;
 
 export default MyAppointment;

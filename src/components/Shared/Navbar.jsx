@@ -21,11 +21,6 @@ const Navbar = () => {
           Review
         </Link>
       </li>
-      <li>
-        <Link to="/about" className="/about">
-          About
-        </Link>
-      </li>
 
       {user ? (
         <>
